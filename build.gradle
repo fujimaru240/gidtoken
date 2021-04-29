@@ -42,3 +42,8 @@ compileJava {
 jar {
     manifest { attributes 'Main-Class': mainClassName }
 }
+
+task copyFile(type: Copy) {
+    from "${buildDir}/libs/${rootProject.name}-${version}.jar"
+    into "${projectDir}"
+}

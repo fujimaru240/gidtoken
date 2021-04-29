@@ -1,0 +1,44 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'application'
+	id 'eclipse'
+}
+
+mainClassName = 'com.app.gidtoken.GidtokenApplication'
+
+group = 'com.app'
+version = '1.0.0'
+sourceCompatibility = '8'
+
+repositories {
+	jcenter()
+	mavenCentral()
+	google()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'com.google.auth:google-auth-library-credentials:0.25.2'
+	implementation 'com.google.auth:google-auth-library-oauth2-http:0.25.2'
+	implementation 'com.google.code.gson:gson'
+	implementation 'com.google.api-client:google-api-client:1.31.4'
+	implementation 'com.google.http-client:google-http-client-jackson2:1.38.0'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+//文字化け対策
+compileJava {
+    options.encoding = "UTF-8"
+}
+
+// 依存ライブラリを含む単一で実行可能なjarを作成させる。
+jar {
+    manifest { attributes 'Main-Class': mainClassName }
+}
